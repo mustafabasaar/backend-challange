@@ -1,6 +1,7 @@
 package com.example.project.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -29,9 +30,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/auth/**").permitAll();
-                    auth.requestMatchers("/admin/**").hasAuthority("ADMIN");
-                    auth.requestMatchers("/welcome/**").hasAnyAuthority("USER", "ADMIN");
+                    auth.requestMatchers(HttpMethod.GET).hasAnyAuthority("USER");
+                    auth.requestMatchers(HttpMethod.POST).hasAnyAuthority("USER");
+                    auth.requestMatchers(HttpMethod.GET).hasAnyAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.POST).hasAnyAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.POST).hasAnyAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(Customizer.withDefaults())

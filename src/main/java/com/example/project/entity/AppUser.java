@@ -36,13 +36,13 @@ public class AppUser implements UserDetails {
     @JoinTable(name="user_adress",schema ="finalproject",
      joinColumns = @JoinColumn(name="user_id"),
     inverseJoinColumns = @JoinColumn(name="adress_id"))
-    private List<Adress> adresses=new ArrayList<>();
+    private List<Adress> adresses;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", schema = "finalproject",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> authorities = new HashSet<>();
+    private Set<Role> authorities ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -77,5 +77,10 @@ public class AppUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setAdresses(Adress adress) {
+      this.adresses=new ArrayList<>();
+      adresses.add(adress);
     }
 }

@@ -18,4 +18,6 @@ public class Adress {
 
     @Column(name = "adress")
     private String adress;
+
+
 }
