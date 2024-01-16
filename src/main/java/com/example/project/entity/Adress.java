@@ -1,3 +1,4 @@
+
 package com.example.project.entity;
 
 import jakarta.persistence.*;
@@ -18,6 +19,5 @@ public class Adress {
 
     @Column(name = "adress")
     private String adress;
-
 
 }

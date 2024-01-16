@@ -1,5 +1,7 @@
 package com.example.project.service;
 
+import com.example.project.dto.RoleConverter;
+import com.example.project.dto.RoleResponse;
 import com.example.project.entity.Adress;
 import com.example.project.entity.AppUser;
 import com.example.project.entity.Role;
@@ -14,9 +16,9 @@ import java.util.Set;
 
 @Service
 public class AuthenticationService {
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public AuthenticationService(UserRepository userRepository, RoleRepository roleRepository,
@@ -26,21 +28,24 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public AppUser register(String firstName, String lastName, String email, String password, Adress adress){
+    public AppUser register(String firstName, String lastName, String email, String password){
         String encodedPassword = passwordEncoder.encode(password);
         Role userRole = roleRepository.findByAuthority("USER").get();
-
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
-
         AppUser user = new AppUser();
-        user.setAdresses(adress);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
         user.setPassword(encodedPassword);
         user.setAuthorities(roles);
-
         return userRepository.save(user);
     }
+    public RoleResponse addRoleToUser(long id, RoleConverter roleConverter){
+        Role userRole = roleRepository.findByAuthority(roleConverter.authority()).get();
+        AppUser user = userRepository.findById(id).get();
+       user.getauthorities().add(userRole);
+        return new RoleResponse("Role add to user");
+    }
+
 }
