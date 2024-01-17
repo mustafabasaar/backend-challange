@@ -6,7 +6,6 @@ import com.example.project.entity.Product;
 import com.example.project.exceptions.EcommerceException;
 import com.example.project.repository.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
