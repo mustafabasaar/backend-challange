@@ -1,30 +1,26 @@
 package com.example.project.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+@Table(name = "cathegory", schema = "finalproject")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "cathegory_id")
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "cathegory_name")
     private String title;
 
     @Column(name = "gender")
     private String gender;
 
-
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "category")
-    private List<Product> products;
-
-    public void addProduct(Product product) {
-        if (products == null) {
-            products = new ArrayList<>();
-        }
-        products.add(product);
-    }
 }

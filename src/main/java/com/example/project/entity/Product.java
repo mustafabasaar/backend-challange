@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "product", schema = "finalproject")
+@Table(name = "clothes", schema = "finalproject")
 public class Product {
     @Id
     @Column(name = "clothes_id")
@@ -27,6 +27,6 @@ public class Product {
     private Integer stock;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name="category_id")
+    @JoinColumn(name="cathegory_id")
     private Category category;
 }
