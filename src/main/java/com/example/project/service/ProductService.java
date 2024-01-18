@@ -1,5 +1,6 @@
 package com.example.project.service;
 
+import com.example.project.dto.CategoryResponse;
 import com.example.project.dto.ProductResponse;
 import com.example.project.entity.Product;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,7 @@ public interface ProductService {
 
     ProductResponse delete(Long id);
 
-    List<Product> saveAll(List<Product> products);
+    List<ProductResponse> getAll();
 
 
 }

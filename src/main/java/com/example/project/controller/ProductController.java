@@ -1,10 +1,11 @@
 package com.example.project.controller;
-
 import com.example.project.dto.ProductResponse;
 import com.example.project.entity.Product;
 import com.example.project.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -27,5 +28,9 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ProductResponse delete(@PathVariable Long id) {
         return productService.delete(id);
+    }
+    @GetMapping("/")
+    public List<ProductResponse> getAll() {
+        return productService.getAll();
     }
 }

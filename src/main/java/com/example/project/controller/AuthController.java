@@ -1,13 +1,8 @@
 package com.example.project.controller;
-
-
 import com.example.project.dto.RegisterUser;
 import com.example.project.dto.RegisterUserResponse;
 import com.example.project.dto.RoleConverter;
-import com.example.project.dto.RoleResponse;
-import com.example.project.entity.AppUser;
 import com.example.project.service.AuthenticationService;
-import com.example.project.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
