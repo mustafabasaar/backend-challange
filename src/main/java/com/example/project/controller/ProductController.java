@@ -33,4 +33,18 @@ public class ProductController {
     public List<ProductResponse> getAll() {
         return productService.getAll();
     }
+    @GetMapping("/search/{gender}")
+    public List<ProductResponse> getProductsByGender(@PathVariable String gender) {
+        return productService.getProductsByGender(gender);
+    }
+    @GetMapping("/category/{cathegory_name}")
+    public List<ProductResponse> getProductsByName(@PathVariable String cathegory_name) {
+        return productService.getProductsByName(cathegory_name);
+    }
+    @GetMapping("/searchcategory/{name}/{gender}")
+    public List<ProductResponse> getProductsByName(@PathVariable String name,@PathVariable String gender) {
+        return productService.getProductsByNameAndGender(name,gender);
+    }
+
+
 }

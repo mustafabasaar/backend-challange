@@ -1,3 +1,5 @@
+
+
 package com.example.project.service;
 
 
@@ -40,6 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse update(Long id, Category category){
         Category willUpdateCategory = findById(id);
+        if(willUpdateCategory==null){
+            throw new EcommerceException("The category with given id does not exist! ID: "+id, HttpStatus.NOT_FOUND);
+        }
         willUpdateCategory.setTitle(category.getTitle());
         willUpdateCategory.setGender(category.getGender());
 
@@ -49,6 +54,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse delete(Long id) {
         Category willDeleteCategory = findById(id);
+        if(willDeleteCategory==null){
+            throw new EcommerceException("The category with given id does not exist! ID: "+id, HttpStatus.NOT_FOUND);
+        }
         categoryRepository.delete(willDeleteCategory);
         return DtoConverter.convertToCategoryResponse(willDeleteCategory);
     }

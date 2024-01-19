@@ -19,6 +19,9 @@ public interface ProductService {
     ProductResponse delete(Long id);
 
     List<ProductResponse> getAll();
+    List<ProductResponse> getProductsByGender(String gender);
+    List<ProductResponse> getProductsByName(String name);
+    List<ProductResponse> getProductsByNameAndGender(String name,String Gender);
 
 
 }

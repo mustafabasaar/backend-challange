@@ -55,4 +55,31 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductResponse> getAll() {
         return DtoConverter.convertToProductResponseList(productRepository.findAll());
     }
+
+ @Override
+    public List<ProductResponse> getProductsByGender(String gender) {
+       List<Product> products = productRepository.findByCategoryGender(gender.toLowerCase());
+     if(products.isEmpty()){
+         throw new EcommerceException("I could not found product by this "+gender,HttpStatus.NOT_FOUND);
+     }
+       return DtoConverter.convertToProductResponseList(products);
+    }
+
+    @Override
+    public List<ProductResponse> getProductsByName(String name) {
+        List<Product> products = productRepository.findByCategoryName(name.toLowerCase());
+        if(products.isEmpty()){
+            throw new EcommerceException("I could not found product by this "+name,HttpStatus.NOT_FOUND);
+        }
+        return DtoConverter.convertToProductResponseList(products);
+    }
+
+    @Override
+    public List<ProductResponse> getProductsByNameAndGender(String name, String gender) {
+        List<Product> products = productRepository.findByCategoryNameAndGender(name.toLowerCase(),gender.toLowerCase());
+        if(products.isEmpty()){
+            throw new EcommerceException("I could not found products this" +name + "or" + gender , HttpStatus.NOT_FOUND);
+        }
+        return DtoConverter.convertToProductResponseList(products);
+    }
 }

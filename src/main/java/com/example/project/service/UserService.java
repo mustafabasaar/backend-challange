@@ -15,6 +15,7 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
+
     private UserRepository userRepository;
 
     @Autowired
@@ -38,5 +39,6 @@ public class UserService implements UserDetailsService {
         }
         throw new EcommerceException("The given email does not exist", HttpStatus.BAD_REQUEST);
     }
+
 }
 

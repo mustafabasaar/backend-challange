@@ -24,7 +24,7 @@ public class AuthController {
     }
     @PostMapping("/addrole/{id}")
     public RegisterUserResponse addrole(@PathVariable long id, @RequestBody RoleConverter roleConverter){
-authenticationService.addRoleToUser(id,roleConverter);
-return new RegisterUserResponse("role added to person");
+        authenticationService.addRoleToUser(id,roleConverter);
+        return new RegisterUserResponse("role added to person");
     }
 }

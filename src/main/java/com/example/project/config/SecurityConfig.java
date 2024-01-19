@@ -37,10 +37,10 @@ public class SecurityConfig {
                     auth.requestMatchers("/categories/**").permitAll();
                     auth.requestMatchers("/roles/**").permitAll();
                     auth.requestMatchers("/auth/**").permitAll();
-                   // auth.requestMatchers("/login/**").permitAll();
+                    auth.requestMatchers("/login/**").permitAll();
                     //auth.anyRequest().authenticated();
                 })
-                .formLogin(Customizer.withDefaults())
+               // .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
               //  .oauth2Login(Customizer.withDefaults())
                 .build();
