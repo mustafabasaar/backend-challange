@@ -2,6 +2,7 @@ package com.example.project.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -33,12 +34,29 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                     auth.requestMatchers("/products/**").permitAll();
-                    auth.requestMatchers("/categories/**").permitAll();
-                    auth.requestMatchers("/roles/**").permitAll();
+                    auth.requestMatchers(HttpMethod.GET,"/products/**").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/products/**").hasAnyRole("admin","store");
+                    auth.requestMatchers(HttpMethod.PUT, "/products/**").hasAnyRole("admin","store");
+                    auth.requestMatchers(HttpMethod.DELETE, "/products/**").hasAnyRole("admin","store");
+
+                    auth.requestMatchers(HttpMethod.GET,"/categories/**").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/categories/**").hasRole("admin");
+                    auth.requestMatchers(HttpMethod.PUT, "/categories/**").hasRole("admin");
+                    auth.requestMatchers(HttpMethod.DELETE, "/categories/**").hasRole("admin");
+
+                    auth.requestMatchers(HttpMethod.GET,"/roles/**").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/roles/**").hasRole("admin");
+                    auth.requestMatchers(HttpMethod.PUT, "/roles/**").hasRole("admin");
+                    auth.requestMatchers(HttpMethod.DELETE, "/roles/**").hasRole("admin");
+
+                    auth.requestMatchers(HttpMethod.GET,"/user/**").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/user/**").hasRole("admin");
+                    auth.requestMatchers(HttpMethod.PUT, "/user/**").hasRole("admin");
+                    auth.requestMatchers(HttpMethod.DELETE, "/user/**").hasRole("admin");
+
                     auth.requestMatchers("/auth/**").permitAll();
+                    auth.requestMatchers("/signup/**").permitAll();
                     auth.requestMatchers("/login/**").permitAll();
-                    //auth.anyRequest().authenticated();
                 })
                // .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())

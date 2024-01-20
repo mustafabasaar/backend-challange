@@ -41,11 +41,6 @@ public class AuthenticationService {
         user.setAuthorities(roles);
         return userRepository.save(user);
     }
-    public RoleResponse addRoleToUser(long id, RoleConverter roleConverter){
-        Role userRole = roleRepository.findByAuthority(roleConverter.authority()).get();
-        AppUser user = userRepository.findById(id).get();
-       user.getauthorities().add(userRole);
-        return new RoleResponse("Role add to user");
-    }
+
 
 }

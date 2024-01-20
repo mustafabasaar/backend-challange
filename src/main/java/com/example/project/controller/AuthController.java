@@ -22,9 +22,7 @@ public class AuthController {
                 .register(registerUser.firstName(),registerUser.lastName(), registerUser.email(), registerUser.password());
          return new RegisterUserResponse("person registered");
     }
-    @PostMapping("/addrole/{id}")
-    public RegisterUserResponse addrole(@PathVariable long id, @RequestBody RoleConverter roleConverter){
-        authenticationService.addRoleToUser(id,roleConverter);
-        return new RegisterUserResponse("role added to person");
-    }
+
+
+
 }
