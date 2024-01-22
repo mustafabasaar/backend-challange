@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<AppUser,Long> {
-    @Query(value = "SELECT * FROM finalproject.user as u WHERE u.email= :email",nativeQuery = true)
+    @Query(value = "SELECT u FROM AppUser u WHERE u.email= :email")
     Optional<AppUser> findUserByEmail(String email);
-    @Query(value="SELECT * FROM finalproject.user as u WHERE u.id= :id ",nativeQuery = true)
+    @Query(value="SELECT u FROM AppUser  u WHERE u.id= :id ")
     Optional<AppUser> findUserById(Long id);
 }

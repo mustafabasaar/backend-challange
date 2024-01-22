@@ -1,8 +1,10 @@
 package com.example.project.converter;
 
+import com.example.project.dto.AdressResponse;
 import com.example.project.dto.CategoryResponse;
 import com.example.project.dto.LoginUserResponse;
 import com.example.project.dto.ProductResponse;
+import com.example.project.entity.Adress;
 import com.example.project.entity.AppUser;
 import com.example.project.entity.Category;
 import com.example.project.entity.Product;
@@ -49,4 +51,10 @@ public class DtoConverter {
                 product.getCategory().getId())));
         return responses;
     }
+
+    public static AdressResponse convertToAddressResponse(Adress adress) {
+        return new AdressResponse(adress.getAdress());
+    }
+
+
 }

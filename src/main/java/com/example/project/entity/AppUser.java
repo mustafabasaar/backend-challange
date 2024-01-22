@@ -32,13 +32,13 @@ public class AppUser implements UserDetails {
 
     @Column(name = "password")
     private String password;
-    /*
+
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="user_adress",schema ="finalproject",
      joinColumns = @JoinColumn(name="user_id"),
     inverseJoinColumns = @JoinColumn(name="adress_id"))
     private List<Adress> adresses;
-*/
+
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="user_role",schema ="finalproject",
             joinColumns = @JoinColumn(name="user_id"),
