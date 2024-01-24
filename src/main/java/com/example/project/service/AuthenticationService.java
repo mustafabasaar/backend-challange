@@ -30,7 +30,7 @@ public class AuthenticationService {
 
     public AppUser register(String firstName, String lastName, String email, String password){
         String encodedPassword = passwordEncoder.encode(password);
-        Role userRole = roleRepository.findByAuthority("ADMIN").get();
+        Role userRole = roleRepository.findByAuthority("USER").get();
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
         AppUser user = new AppUser();

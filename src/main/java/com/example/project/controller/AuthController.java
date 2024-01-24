@@ -19,7 +19,7 @@ public class AuthController {
     @PostMapping("/register")
     public RegisterUserResponse register(@RequestBody RegisterUser registerUser){
          authenticationService
-                .register(registerUser.firstName(),registerUser.lastName(), registerUser.email(), registerUser.password());
+                .register(registerUser.getFirstName(),registerUser.getLastName(), registerUser.getEmail(), registerUser.getPassword());
          return new RegisterUserResponse("person registered");
     }
 

@@ -47,7 +47,14 @@ public class UserService implements UserDetailsService {
 
     public RoleResponse addRoleToUser(long id, RoleConverter roleConverter){
         Role userRole = roleRepository.findByAuthority(roleConverter.authority()).get();
+        if(userRole== null){
+            throw new EcommerceException("role not found by"+roleConverter.authority(),HttpStatus.BAD_REQUEST);
+        }
+
         AppUser user = userRepository.findUserById(id).get();
+        if(user== null){
+            throw new EcommerceException("user not found by"+id,HttpStatus.BAD_REQUEST);
+        }
         user.getauthorities().add(userRole);
         return new RoleResponse("Role add to user");
     }
